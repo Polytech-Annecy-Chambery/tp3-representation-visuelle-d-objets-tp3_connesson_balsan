@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+    # -*- coding: utf-8 -*-
 """
 Created on Thu Nov 16 19:47:50 2017
 
@@ -8,7 +8,7 @@ import OpenGL.GL as gl
 
 class Section:
     # Constructor
-    def __init__(self, parameters = {}) :  
+     def __init__(self, parameters = {}) :  
         # Parameters
         # position: position of the wall 
         # width: width of the wall - mandatory
@@ -42,40 +42,55 @@ class Section:
         self.generate()   
         
     # Getter
-    def getParameter(self, parameterKey):
+     def getParameter(self, parameterKey):
         return self.parameters[parameterKey]
     
     # Setter
-    def setParameter(self, parameterKey, parameterValue):
+     def setParameter(self, parameterKey, parameterValue):
         self.parameters[parameterKey] = parameterValue
         return self     
 
     # Defines the vertices and faces 
-    def generate(self):
+     def generate(self):
         self.vertices = [ 
-                # Définir ici les sommets
+                [0, 0, 0 ], 
+                [0, 0, self.parameters['height']], 
+                [self.parameters['width'], 0, self.parameters['height']],
+                [self.parameters['width'], 0, 0],   
+                [0,0,0],
+                [0,0,self.parameters['height']],
+                [0,self.parameters['width'],self.parameters['height']],
+                [0,self.parameters['width'],0],
+                [0,0,0],
+                [0,self.parameters['width'],self.parameters['height']], 
+                [self.parameters['width'], self.parameters['width'], self.parameters['height']],
+                [self.parameters['width'], self.parameters['width'], 0],
+                [0,0,0],
+                [self.parameters['width'],0,self.parameters['height']],
+                [self.parameters['width'],self.parameters['width'],self.parameters['height']],
+                [self.parameters['width'],self.parameters['width'],0],         				
                 ]
         self.faces = [
-                # définir ici les faces
+                [0, 3, 2, 1],
                 ]   
 
     # Checks if the opening can be created for the object x
-    def canCreateOpening(self, x):
+     def canCreateOpening(self, x):
         # A compléter en remplaçant pass par votre code
         pass      
         
     # Creates the new sections for the object x
-    def createNewSections(self, x):
+     def createNewSections(self, x):
         # A compléter en remplaçant pass par votre code
         pass              
         
     # Draws the edges
-    def drawEdges(self):
+     def drawEdges(self):
         # A compléter en remplaçant pass par votre code
         pass           
                     
     # Draws the faces
-    def draw(self):
+     def draw(self):
         # A compléter en remplaçant pass par votre code
         pass
   
