@@ -41,8 +41,7 @@ class Wall:
         self.parentSection = Section({'width': self.parameters['width'], \
                                       'height': self.parameters['height'], \
                                       'thickness': self.parameters['thickness'], \
-                                      'color': self.parameters['color'],
-                                      'position': self.parameters['position']})
+                                      'color': self.parameters['color']})
         self.objects.append(self.parentSection) 
         
     # Getter
@@ -56,6 +55,7 @@ class Wall:
 
     # Finds the section where the object x can be inserted
     def findSection(self, x):
+        
         for item in enumerate(self.objects):
             if isinstance(item[1], Section) and item[1].canCreateOpening(x):
                 return item
@@ -64,10 +64,20 @@ class Wall:
     # Adds an object    
     def add(self, x):    
         # A compléter en remplaçant pass par votre code
-        pass        
+        test = self.findSection(x)
+        self.pop(test)
+               
+        return test        
                     
     # Draws the faces
     def draw(self):
-        # A compléter en remplaçant pass par votre code
-        pass
+        
+        gl.glPushMatrix()
+        gl.glRotatef(self.parameters['orientation'], 0, 0, 1)
+        gl.glTranslatef(self.parameters['position'][0], self.parameters['position'][1], self.parameters['position'][2])            
+        for x in self.objects:
+            x.draw()
   
+        gl.glPopMatrix()
+
+
