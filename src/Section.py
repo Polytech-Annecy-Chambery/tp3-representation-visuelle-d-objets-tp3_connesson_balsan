@@ -1,4 +1,4 @@
-    # -*- coding: utf-8 -*-
+   # -*- coding: utf-8 -*-
 """
 Created on Thu Nov 16 19:47:50 2017
 
@@ -57,21 +57,18 @@ class Section:
                 [0, 0, self.parameters['height']], 
                 [self.parameters['width'], 0, self.parameters['height']],
                 [self.parameters['width'], 0, 0],   
-                [0,0,0],
-                [0,0,self.parameters['height']],
-                [0,self.parameters['width'],self.parameters['height']],
-                [0,self.parameters['width'],0],
-                [0,0,0],
-                [0,self.parameters['width'],self.parameters['height']], 
-                [self.parameters['width'], self.parameters['width'], self.parameters['height']],
-                [self.parameters['width'], self.parameters['width'], 0],
-                [0,0,0],
-                [self.parameters['width'],0,self.parameters['height']],
-                [self.parameters['width'],self.parameters['width'],self.parameters['height']],
-                [self.parameters['width'],self.parameters['width'],0],         				
+                [0, self.parameters['thickness'], 0],
+                [0, self.parameters['thickness'], self.parameters['height']],
+                [self.parameters['width'], self.parameters['thickness'], self.parameters['height']],  
+                [self.parameters['width'], self.parameters['thickness'], 0]      				
                 ]
         self.faces = [
                 [0, 3, 2, 1],
+                [0, 4, 5, 1],
+                [4, 5, 6, 7],
+                [3, 7, 6, 2],
+                [0, 3, 2, 4],
+                [1, 2, 6, 5]
                 ]   
 
     # Checks if the opening can be created for the object x
@@ -86,11 +83,46 @@ class Section:
         
     # Draws the edges
      def drawEdges(self):
-        # A compléter en remplaçant pass par votre code
-        pass           
+         
+             gl.glPushMatrix()
+             gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL)
+             
+             gl.glBegin(gl.GL_QUADS)
+             gl.glColor3fv([0.5,0.5,0.5])
+             
+             for i in range(0, len(self.faces)):
+                 
+                 face = self.faces[i]
+                 gl.glVertex3fv(self.vertices[face[0]])
+                 gl.glVertex3fv(self.vertices[face[1]])
+                 gl.glVertex3fv(self.vertices[face[2]])
+                 gl.glVertex3fv(self.vertices[face[3]])
+
+             gl.glEnd()
+             gl.glPopMatrix()
+             
+             return self
                     
     # Draws the faces
      def draw(self):
-        # A compléter en remplaçant pass par votre code
-        pass
-  
+            
+         if self.parameters['edges'] == True:
+             self.drawEdges()
+             
+             gl.glPushMatrix()
+             gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL)
+             
+             gl.glBegin(gl.GL_QUADS)
+             gl.glColor3fv([0,0,0])
+             
+             for i in range(0, len(self.faces)):
+                 
+                 face = self.faces[i]
+                 gl.glVertex3fv(self.vertices[face[0]])
+                 gl.glVertex3fv(self.vertices[face[1]])
+                 gl.glVertex3fv(self.vertices[face[2]])
+                 gl.glVertex3fv(self.vertices[face[3]])
+
+             gl.glEnd()
+             gl.glPopMatrix()
+             return self
