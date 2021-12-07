@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 16 19:47:50 2017
-
-@author: lfoul
-"""
-
 from Configuration import Configuration
 from Section import Section
 from Wall import Wall
@@ -96,8 +89,8 @@ def main():
     
     # configuration = Q1a()
     # configuration = Q1b_f()
-     configuration = Q2b()
-    # configuration = Q2c()
+    # configuration = Q2b()
+     configuration = Q2c()
     # configuration = Q3a()
     # configuration = Q4a()
     # configuration = Q5a()
