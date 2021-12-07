@@ -66,14 +66,6 @@ class Configuration:
         gl.glClear(gl.GL_COLOR_BUFFER_BIT|gl.GL_DEPTH_BUFFER_BIT)                  
         gl.glEnable(gl.GL_DEPTH_TEST)   
         
-        gl.glPolygonMode(gl.GL_FRONT_AND_BACK, gl.GL_FILL) # on trace les faces : GL_FILL
-        gl.glBegin(gl.GL_QUADS) # Tracé d’un quadrilatère
-        gl.glColor3fv([0.5, 0.5, 0.5]) # Couleur gris moyen
-        gl.glVertex3fv([0, 0, 0])
-        gl.glVertex3fv([1, 0, 0])
-        gl.glVertex3fv([1, 0, 1])
-        gl.glVertex3fv([0, 0, 1])
-        gl.glEnd()
             
     # Initializes the tranformation matrix    
     def initializeTransformationMatrix(self):     
